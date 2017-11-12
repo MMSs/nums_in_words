@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Numbers in Words</title>
+	<script src="./num-in-words.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+	<div id="app">
+		<label for="number">Number: <input type="number" name="number" id="number" v-on:keyup="convert" v-on:keydown="convert" v-model.number="num" placeholder="0"></label>
+		<div id="words">{{ num_words }}</div>
+	</div>
+	<script>
+		var app = new Vue({
+			el: "#app",
+			data: {
+				num_words: 'Start typing a number to read it in words here',
+				num: "0"
+			},
+			methods: {
+				convert: function () {
+					if (app.num > 0) {
+						app.num_words = convert_num2words(app.num);
+					} else {
+						app.num_words = "Number needs to be an integer above 0";
+					}
+				}
+			}
+		});
+	</script>
+</body>
+</html>
